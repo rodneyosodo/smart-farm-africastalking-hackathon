@@ -36,3 +36,17 @@ void readHum(void)
     Serial.print("Humidity: ");
     Serial.println(humidity);
 }
+
+
+void readTemp(void)
+{
+    // Read temperatire ad Celsius(default)
+    temperature = dht.readTemperature();
+        // Check if reads failed and exit
+    if (temperature == NULL){
+        Serial.println("Failed to read from DHT");
+        return;
+    }
+    Serial.print("Temperature: ");
+    Serial.println(temperature);
+}
