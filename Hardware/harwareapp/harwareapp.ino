@@ -50,3 +50,13 @@ void readTemp(void)
     Serial.print("Temperature: ");
     Serial.println(temperature);
 }
+
+void readSoilMoisture(void)
+{
+    // Read soil moisture
+    soilMoistureValue = analogRead(soilMoisturePin);
+    soilMoistureValue = map(soilMoistureValue, 0, 4095, 0, 100);
+    // Map value : 400 will be 100 and 1023 will be 0
+    Serial.print("Soil moisture content: ");
+    Serial.println(soilMoistureValue);
+}
