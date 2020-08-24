@@ -49,7 +49,7 @@ void readHum(void)
 
 void readTemp(void)
 {
-    // Read temperatire in Celsius(default)
+    // Read temperature in Celsius(default)
     temperature = dht.readTemperature();
         // Check if reads failed and exit
     if (temperature == NULL){
