@@ -2,18 +2,22 @@
 #define DHTTYPE DHT11
 
 int loop_time = 5000;
-int DHT_PIN = PA6;
-float humidity, temperature;
+const int DHT_PIN = PA6;
+const int soilMoisturePin = PB1;
+
+float humidity, temperature, soilMoistureValue;
 
 DHT dht(DHT_PIN, DHTTYPE);
 
 void readTemp(void);
 void readHum(void);
+void readSoilMoisture(void);
 
 void setup()
 {
     Serial.begin(9600);
     Serial.println("Starting DHT11");
+    pinMode(soilMoisturePin, INPUT);
     dht.begin();
 }
 
@@ -21,6 +25,7 @@ void loop()
 {
     readTemp();
     readHum();
+    readSoilMoisture();
     delay(loop_time);
     // Wait for a few seconds to loop
 }
