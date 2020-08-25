@@ -34,6 +34,7 @@ const char gprsUser[] = "";
 const char gprsPass[] = "";
 char buffer[100];
 int returnCode = 0;
+// BEGIN MQTT CONFIG
 
 const char mqttUsername[] = "rodneyeris:demo2eris";
 const char mqttPassword[] = "qwertyuiop123";
