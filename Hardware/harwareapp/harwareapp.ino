@@ -6,12 +6,28 @@
 #include <IPStack.h>
 
 #define DHTTYPE DHT11
+// Set serial for debug console (to the Serial Monitor, default speed 115200)
+#define SerialMon Serial
+// Set serial for AT commands (to the module)
+#define SerialAT Serial2
+// Define the serial console for debug prints, if needed
+#define TINY_GSM_DEBUG SerialMon
+// Define how you're planning to connect to the internet
+#define TINY_GSM_USE_GPRS true
+#define TINY_GSM_USE_WIFI false
 
 int loop_time = 5000;
 int delay_time = 2000;
 const int DHT_PIN = PA6;
 const int soilMoisturePin = PB1;
 const int ldrPin = PB0;
+
+// Your GPRS credentials, if any
+const char apn[] = "iot.safaricom.com";
+const char gprsUser[] = "";
+const char gprsPass[] = "";
+char buffer[100];
+int returnCode = 0;
 
 float humidity, temperature, soilMoistureValue, ldrValue;
 
