@@ -122,3 +122,66 @@ void readLightIntensity(void)
     Serial.print("Light intensity Value: ");
     Serial.println(ldrValue);
 }
+
+void connectGSM(void)
+{
+    SerialMon.println("Getting the modem ready");
+    modem.init();
+    String name = modem.getModemName();
+    String modemInfo = modem.getModemInfo();
+    SerialMon.print("Name: ");
+    SerialMon.println(name);
+    SerialMon.print("Modem info: ");
+    SerialMon.println(modemInfo);
+    SerialMon.println("Initializing GSM network registration");
+    if (!modem.waitForNetwork())
+    {
+        SerialMon.println("Unable to initialize registration. Reset and try again.");
+        modem.restart();
+        while (true)
+        {
+            ;
+        }
+    }
+    if (modem.isNetworkConnected()) {
+        SerialMon.println("Network connected");
+    }
+    SerialMon.println("GSM OK");
+    SerialMon.println("Attempting to establish GPRS connection");
+    if (!modem.gprsConnect(apn, gprsUser, gprsPass))
+    {
+        SerialMon.println("Unable to connect to APN. Reset and try again");
+        while (true)
+        {
+            ;
+        }
+    }
+    if(modem.isGprsConnected())
+    {
+        SerialMon.println("GPRS status: connected" );
+    }
+
+    String ccid = modem.getSimCCID();
+    SerialMon.print("CCID: ");
+    SerialMon.println(ccid);
+
+    String imei = modem.getIMEI();
+    SerialMon.print("IMEI: ");
+    SerialMon.println(imei);
+
+    String imsi = modem.getIMSI();
+    SerialMon.print("IMSI: ");
+    SerialMon.println(imsi);
+
+    String cop = modem.getOperator();
+    SerialMon.print("Operator: ");
+    SerialMon.println(cop);
+
+    IPAddress local = modem.localIP();
+    SerialMon.print("Local IP: ");
+    SerialMon.println(local);
+
+    int csq = modem.getSignalQuality();
+    SerialMon.print("Signal quality: ");
+    SerialMon.println(csq);
+}
