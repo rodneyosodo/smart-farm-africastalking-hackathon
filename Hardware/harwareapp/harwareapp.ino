@@ -8,6 +8,7 @@
 #define DHTTYPE DHT11
 
 int loop_time = 5000;
+int delay_time = 2000;
 const int DHT_PIN = PA6;
 const int soilMoisturePin = PB1;
 const int ldrPin = PB0;
