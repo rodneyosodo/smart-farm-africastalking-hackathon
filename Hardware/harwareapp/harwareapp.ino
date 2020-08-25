@@ -4,6 +4,8 @@
 #include <TinyGsmClient.h>
 #include <Countdown.h>
 #include <IPStack.h>
+#include <MQTTClient.h>
+#include <MQTTPacket.h>
 
 #define DHTTYPE DHT11
 // Set serial for debug console (to the Serial Monitor, default speed 115200)
