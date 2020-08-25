@@ -269,3 +269,41 @@ void connectMqtt(void)
     SerialMon.println(buffer);
     SerialMon.println("Successfully connected to the broker");
 }
+
+void publishMessage(char *payload, const char *topic)
+{
+    MQTT::Message message;
+    message.qos = MQTT::QOS1;
+    message.payload = (void *)payload;
+    message.payloadlen = strlen(payload) + 1;
+    returnCode = mqttClient.publish(topic, message);
+    snprintf(buffer, sizeof(buffer), "%s topic publish return code %i", topic, returnCode);
+    SerialMon.println(buffer);
+}
+
+// void sendHumidity(void)
+// {
+//     humidity = readHum();
+//     snprintf(buffer, sizeof(buffer), "%.3f", humidity);
+//     publishMessage(buffer, humidityTopic);
+// }
+
+// void sendTemperature(void)
+// {
+//     temperature = readTemp();
+//     snprintf(buffer, sizeof(buffer), "%.3f", temperature);
+//     publishMessage(buffer, temperatureTopic);
+// }
+
+// void sendLightIntensity(void)
+// {
+//     ldrValue = readLightIntensity();
+//     snprintf(buffer, sizeof(buffer), "%i", ldrValue);
+//     publishMessage(buffer, lightIntensityTopic);
+// }
+// void sendSoilMoisture(void)
+// {
+//     soilMoistureValue = readSoilMoisture();
+//     snprintf(buffer, sizeof(buffer), "%.3f", soilMoistureValue);
+//     publishMessage(buffer, soilMoistureTopic);
+// }
