@@ -214,3 +214,50 @@ void connectGSM(void)
     SerialMon.print("Signal quality: ");
     SerialMon.println(csq);
 }
+
+void connectMqtt(void)
+{
+    MQTT::Message mqttMessage;
+    snprintf(buffer, sizeof(buffer), "Connecting to %s on port %u\n", brokerAddress, brokerPort);
+    SerialMon.println(buffer);
+    returnCode = ipstack.connect(brokerAddress, brokerPort);
+    if (returnCode != 1)
+    {
+        SerialMon.println("Unable to connect to TCP Port.");
+    }
+    else
+    {
+        SerialMon.println("TCP port open");
+    }
+    delay(delay_time);
+    MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
+    data.MQTTVersion = 4;
+    data.clientID.cstring = (char *)mqttDeviceID;
+    data.username.cstring = (char *)mqttUsername;
+    data.password.cstring = (char *)mqttPassword;
+    data.keepAliveInterval = 60;
+    data.cleansession = 1;
+    data.will.message.cstring = (char *)willMessage;
+    data.will.qos = MQTT::QOS1;
+    data.will.retained = 0;
+    data.will.topicName.cstring = (char *)willTopic;
+    returnCode = mqttClient.connect(data);
+    if (returnCode != 0)
+    {
+        snprintf(buffer, sizeof(buffer), "Code %i. Unable to contact the broker. Is it up? Reset and try again \r\n", returnCode);
+        SerialMon.print(buffer);
+        while (true)
+        {
+            ;
+        }
+    }
+    mqttMessage.qos = MQTT::QOS1;
+    mqttMessage.retained = false;
+    mqttMessage.dup = false;
+    mqttMessage.payload = (void *)birthMessage;
+    mqttMessage.payloadlen = strlen(birthMessage) + 1;
+    returnCode = mqttClient.publish(birthTopic, mqttMessage);
+    snprintf(buffer, sizeof(buffer), "Birth topic publish return code %i \n", returnCode);
+    SerialMon.println(buffer);
+    SerialMon.println("Successfully connected to the broker");
+}
