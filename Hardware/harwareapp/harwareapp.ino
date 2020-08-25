@@ -49,7 +49,7 @@ const char *willTopic = TOPIC_PREFIX "will";
 const char *humidityTopic = TOPIC_PREFIX "humidity";
 const char *soilMoistureTopic = TOPIC_PREFIX "moisture";
 const char *temperatureTopic = TOPIC_PREFIX "temperature";
-const char *ledTopic = TOPIC_PREFIX "led";
+const char *relayTopic = TOPIC_PREFIX "relay";
 const char *lightIntensityTopic = TOPIC_PREFIX "light";
 
 const char birthMessage[] = "CONNECTED";
