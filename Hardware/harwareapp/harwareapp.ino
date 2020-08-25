@@ -35,6 +35,28 @@ const char gprsPass[] = "";
 char buffer[100];
 int returnCode = 0;
 
+const char mqttUsername[] = "rodneyeris:demo2eris";
+const char mqttPassword[] = "qwertyuiop123";
+const char mqttDeviceID[] = "rodneylocalhost2";
+#define TOPIC_PREFIX "rodneyeris/demo2eris/"
+
+// birth topic - This is a topic that the device publishes to when it makes the first MQTT Connection
+//  will topic - This is a topic that the device should publish to when  it disconnects.
+
+const char *birthTopic = TOPIC_PREFIX "birth";
+const char *willTopic = TOPIC_PREFIX "will";
+const char *humidityTopic = TOPIC_PREFIX "humidity";
+const char *soilMoistureTopic = TOPIC_PREFIX "moisture";
+const char *temperatureTopic = TOPIC_PREFIX "temperature";
+const char *ledTopic = TOPIC_PREFIX "led";
+const char *lightIntensityTopic = TOPIC_PREFIX "light";
+
+const char birthMessage[] = "CONNECTED";
+const char willMessage[] = "DISCONNECTED";
+
+char brokerAddress[] = "broker.africastalking.com";
+int brokerPort = 1883;
+
 float humidity, temperature, soilMoistureValue, ldrValue;
 
 DHT dht(DHT_PIN, DHTTYPE);
