@@ -124,17 +124,18 @@ float readHum(void)
 }
 
 
-void readTemp(void)
+float readTemp(void)
 {
     // Read temperature in Celsius(default)
     temperature = dht.readTemperature();
         // Check if reads failed and exit
     if (temperature == NULL){
         Serial.println("Failed to read from DHT");
-        return;
+        exit;
     }
     Serial.print("Temperature: ");
     Serial.println(temperature);
+    return temperature;
 }
 
 void readSoilMoisture(void)
