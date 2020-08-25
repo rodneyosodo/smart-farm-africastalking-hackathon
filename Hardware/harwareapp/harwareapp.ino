@@ -16,11 +16,15 @@
 #define TINY_GSM_USE_GPRS true
 #define TINY_GSM_USE_WIFI false
 
+// set GSM PIN, if any
+#define GSM_POWER_KEY PB15
+
 int loop_time = 5000;
 int delay_time = 2000;
 const int DHT_PIN = PA6;
 const int soilMoisturePin = PB1;
 const int ldrPin = PB0;
+#define LED_PIN PC13
 
 // Your GPRS credentials, if any
 const char apn[] = "iot.safaricom.com";
@@ -32,11 +36,14 @@ int returnCode = 0;
 float humidity, temperature, soilMoistureValue, ldrValue;
 
 DHT dht(DHT_PIN, DHTTYPE);
+TinyGsm modem(SerialAT);
+TinyGsmClient tinyGSMClient(modem);
 
 void readTemp(void);
 void readHum(void);
 void readSoilMoisture(void);
 void readLightIntensity(void);
+void connectGSM(void);
 
 void setup()
 {
