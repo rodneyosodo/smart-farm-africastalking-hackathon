@@ -110,16 +110,17 @@ void loop()
     // Wait for a few seconds to loop again
 }
 
-void readHum(void)
+float readHum(void)
 {
     humidity = dht.readHumidity();
     // Check if reads failed and exit
     if (humidity == NULL){
         Serial.println("Failed to read from DHT");
-        return;
+        exit;
     }
     Serial.print("Humidity: ");
     Serial.println(humidity);
+    return humidity;
 }
 
 
