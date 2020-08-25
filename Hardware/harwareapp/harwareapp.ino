@@ -1,6 +1,10 @@
 #define TINY_GSM_MODEM_SIM800
 
 #include <DHT.h>
+#include <TinyGsmClient.h>
+#include <Countdown.h>
+#include <IPStack.h>
+
 #define DHTTYPE DHT11
 
 int loop_time = 5000;
