@@ -319,3 +319,32 @@ void sendSoilMoisture(void)
     snprintf(buffer, sizeof(buffer), "%.3f", soilMoistureValue);
     publishMessage(buffer, soilMoistureTopic);
 }
+
+void incomingMessageHandler(MQTT::MessageData &messageData)
+{
+    MQTT::Message &message = messageData.message;
+    MQTTString topic = messageData.topicName;
+    snprintf(buffer, sizeof(buffer), "%s", messageData.topicName);
+    if (buffer == relayTopic)
+    {
+        snprintf(buffer, sizeof(buffer), "%s", messageData.message.payload);
+        if (buffer == "on")
+        {
+            digitalWrite(relayPin, 1);
+        }
+        else if (buffer == "off")
+        {
+            digitalWrite(relayPin, 0);
+        }
+        else
+        {
+            SerialMon.print("Unknown LED Command: ");
+            SerialMon.println(buffer);
+        }
+    }
+    else
+    {
+        SerialMon.print("Unknown Topic: ");
+        SerialMon.println(buffer);
+    }
+}
