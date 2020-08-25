@@ -149,7 +149,7 @@ float readSoilMoisture(void)
     return soilMoistureValue;
 }
 
-void readLightIntensity(void)
+float readLightIntensity(void)
 {
     // Read light intensity
     int ldrValue = analogRead(ldrPin);
@@ -157,6 +157,7 @@ void readLightIntensity(void)
     // Map value : 0 will be 100 and 4095 will be 0
     Serial.print("Light intensity Value: ");
     Serial.println(ldrValue);
+    return ldrValue;
 }
 
 void connectGSM(void)
