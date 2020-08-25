@@ -47,10 +47,23 @@ void connectGSM(void);
 
 void setup()
 {
-    Serial.begin(9600);
-    Serial.println("Starting DHT11");
+    SerialMon.begin(115200);
+    delay(delay_time);
+    SerialAT.begin(115200);
+    delay(delay_time);
     pinMode(soilMoisturePin, INPUT);
     pinMode(ldrPin, INPUT);
+
+    pinMode(GSM_POWER_KEY, OUTPUT);
+    pinMode(LED_PIN, OUTPUT);
+
+        // GSM ON
+    digitalWrite(GSM_POWER_KEY, 1);
+    delay(delay_time);
+    digitalWrite(GSM_POWER_KEY, 0);
+
+    connectGSM();
+    delay(delay_time);
     dht.begin();
 }
 
