@@ -62,6 +62,8 @@ float humidity, temperature, soilMoistureValue, ldrValue;
 DHT dht(DHT_PIN, DHTTYPE);
 TinyGsm modem(SerialAT);
 TinyGsmClient tinyGSMClient(modem);
+IPStack ipstack(tinyGSMClient);
+MQTT::Client<IPStack, Countdown, 128, 2> mqttClient = MQTT::Client<IPStack, Countdown, 128, 2>(ipstack);
 
 void readTemp(void);
 void readHum(void);
