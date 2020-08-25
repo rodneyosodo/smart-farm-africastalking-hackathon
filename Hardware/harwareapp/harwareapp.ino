@@ -26,7 +26,7 @@ int delay_time = 2000;
 const int DHT_PIN = PA6;
 const int soilMoisturePin = PB1;
 const int ldrPin = PB0;
-#define LED_PIN PC13
+#define relayPin PC13
 
 // Your GPRS credentials, if any
 const char apn[] = "iot.safaricom.com";
