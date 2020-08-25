@@ -72,7 +72,11 @@ float readSoilMoisture(void);
 float readLightIntensity(void);
 void connectGSM(void);
 void connectMqtt(void);
-
+void publishMessage(char *payload, const char *topic);
+void sendTemperature(void);
+void sendHumidity(void);
+void sendSoilMoisture(void);
+void sendLightIntensity(void);
 void setup()
 {
     SerialMon.begin(115200);
