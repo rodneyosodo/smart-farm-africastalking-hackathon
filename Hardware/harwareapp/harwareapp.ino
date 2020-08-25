@@ -71,6 +71,7 @@ void readHum(void);
 void readSoilMoisture(void);
 void readLightIntensity(void);
 void connectGSM(void);
+void connectMqtt(void);
 
 void setup()
 {
