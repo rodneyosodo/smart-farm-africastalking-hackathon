@@ -102,10 +102,10 @@ void setup()
 
 void loop()
 {
-    readTemp();
-    readHum();
-    readSoilMoisture();
-    readLightIntensity();
+    sendTemperature();
+    sendHumidity();
+    sendSoilMoisture();
+    sendLightIntensity();
     delay(loop_time);
     // Wait for a few seconds to loop again
 }
