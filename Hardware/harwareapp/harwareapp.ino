@@ -1,3 +1,5 @@
+#define TINY_GSM_MODEM_SIM800
+
 #include <DHT.h>
 #define DHTTYPE DHT11
 
