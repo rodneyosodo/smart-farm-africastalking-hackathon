@@ -91,6 +91,7 @@ void setup()
     digitalWrite(GSM_POWER_KEY, 0);
 
     connectGSM();
+    connectMqtt();
     delay(delay_time);
     dht.begin();
 }
