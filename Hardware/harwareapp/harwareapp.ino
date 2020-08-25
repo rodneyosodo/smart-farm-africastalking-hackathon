@@ -66,10 +66,10 @@ TinyGsmClient tinyGSMClient(modem);
 IPStack ipstack(tinyGSMClient);
 MQTT::Client<IPStack, Countdown, 128, 2> mqttClient = MQTT::Client<IPStack, Countdown, 128, 2>(ipstack);
 
-void readTemp(void);
-void readHum(void);
-void readSoilMoisture(void);
-void readLightIntensity(void);
+float readTemp(void);
+float readHum(void);
+float readSoilMoisture(void);
+float readLightIntensity(void);
 void connectGSM(void);
 void connectMqtt(void);
 
