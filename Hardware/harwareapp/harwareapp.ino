@@ -138,7 +138,7 @@ float readTemp(void)
     return temperature;
 }
 
-void readSoilMoisture(void)
+float readSoilMoisture(void)
 {
     // Read soil moisture
     soilMoistureValue = analogRead(soilMoisturePin);
@@ -146,6 +146,7 @@ void readSoilMoisture(void)
     // Map value : 0 will be 0 and 4095 will be 1000
     Serial.print("Soil moisture content: ");
     Serial.println(soilMoistureValue);
+    return soilMoistureValue;
 }
 
 void readLightIntensity(void)
