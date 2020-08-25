@@ -89,7 +89,7 @@ void setup()
     pinMode(ldrPin, INPUT);
 
     pinMode(GSM_POWER_KEY, OUTPUT);
-    pinMode(LED_PIN, OUTPUT);
+    pinMode(relayPin, OUTPUT);
 
         // GSM ON
     digitalWrite(GSM_POWER_KEY, 1);
