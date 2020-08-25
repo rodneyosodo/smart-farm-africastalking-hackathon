@@ -31,7 +31,7 @@ void loop()
     readSoilMoisture();
     readLightIntensity();
     delay(loop_time);
-    // Wait for a few seconds to loop
+    // Wait for a few seconds to loop again
 }
 
 void readHum(void)
