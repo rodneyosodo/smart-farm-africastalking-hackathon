@@ -77,6 +77,8 @@ void sendTemperature(void);
 void sendHumidity(void);
 void sendSoilMoisture(void);
 void sendLightIntensity(void);
+void incomingMessageHandler(MQTT::MessageData &messageData);
+
 void setup()
 {
     SerialMon.begin(115200);
