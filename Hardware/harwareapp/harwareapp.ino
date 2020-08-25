@@ -269,6 +269,16 @@ void connectMqtt(void)
     returnCode = mqttClient.publish(birthTopic, mqttMessage);
     snprintf(buffer, sizeof(buffer), "Birth topic publish return code %i \n", returnCode);
     SerialMon.println(buffer);
+    returnCode = mqttClient.subscribe(relayTopic, MQTT::QOS1, incomingMessageHandler);
+    if (returnCode != 0)
+    {
+        snprintf(buffer, sizeof(buffer), "Unable to subscribe to relay topic \n");
+        SerialMon.print(buffer);
+        while (true)
+        {
+            ;
+        }
+    }
     SerialMon.println("Successfully connected to the broker");
 }
 
