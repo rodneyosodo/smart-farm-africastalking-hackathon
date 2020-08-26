@@ -262,6 +262,12 @@ void connectGSM(void)
     if(modem.isGprsConnected())
     {
         SerialMon.println("GPRS status: connected" );
+            pre();
+            u8x8.setFont(u8x8_font_amstrad_cpc_extended_f); 
+            u8x8.setCursor(0,4);
+            u8x8.print("GPRS: ");
+            u8x8.setCursor(0,5); 
+            u8x8.print("connected");
     }
 
     String ccid = modem.getSimCCID();
