@@ -155,8 +155,13 @@ float readHum(void)
         Serial.println("Failed to read from DHT");
         exit;
     }
-    Serial.print("Humidity: ");
-    Serial.println(humidity);
+    sprintf(buffer, "%.2f", humidity);
+    SerialMon.print("Humidity: ");
+    SerialMon.println(buffer);
+    pre();
+    u8x8.setFont(u8x8_font_amstrad_cpc_extended_f); 
+    u8x8.drawString(0, 2, "Humidity");
+    u8x8.draw2x2String(0, 5, buffer);
     return humidity;
 }
 
