@@ -386,7 +386,7 @@ void sendTemperature(void)
 void sendLightIntensity(void)
 {
     ldrValue = readLightIntensity();
-    snprintf(buffer, sizeof(buffer), "%i", ldrValue);
+    snprintf(buffer, sizeof(buffer), "%.3f", ldrValue);
     publishMessage(buffer, lightIntensityTopic);
 }
 void sendSoilMoisture(void)
