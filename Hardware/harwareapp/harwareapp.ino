@@ -344,6 +344,12 @@ void connectMqtt(void)
         }
     }
     SerialMon.println("Successfully connected to the broker");
+    pre();
+    u8x8.setFont(u8x8_font_amstrad_cpc_extended_f); 
+    u8x8.setCursor(0,4);
+    u8x8.print("Broker: ");
+    u8x8.setCursor(0,5); 
+    u8x8.print("connected");
 }
 
 void publishMessage(char *payload, const char *topic)
