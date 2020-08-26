@@ -209,8 +209,14 @@ float readLightIntensity(void)
     int ldrValue = analogRead(ldrPin);
     ldrValue = map(ldrValue, 0, 4095, 100, 0);
     // Map value : 0 will be 100 and 4095 will be 0
-    Serial.print("Light intensity Value: ");
-    Serial.println(ldrValue);
+    sprintf(buffer, "%.2f", ldrValue);
+    SerialMon.print("Light intensity: ");
+    SerialMon.println(buffer);
+    pre();
+    u8x8.setFont(u8x8_font_amstrad_cpc_extended_f); 
+    u8x8.drawString(0, 2, "Light intensity");
+    u8x8.draw2x2String(0, 5, buffer);
+
     return ldrValue;
 }
 
