@@ -167,3 +167,6 @@ dmypy.json
 
 # Pycharm files
 .idea/
+
+# Migrations
+migrations/
