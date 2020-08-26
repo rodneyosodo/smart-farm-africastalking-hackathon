@@ -133,6 +133,16 @@ void loop()
     sendSoilMoisture();
     delay(delay_time);
     sendLightIntensity();
+
+    pre();
+    u8x8.fillDisplay();
+    for( r = 0; r < u8x8.getRows(); r++ )
+    {
+        u8x8.clearLine(r);
+        delay(delay_time);
+    }
+    delay(delay_time);
+
     delay(loop_time);
     // Wait for a few seconds to loop again
 }
