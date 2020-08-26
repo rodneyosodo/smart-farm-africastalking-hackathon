@@ -175,8 +175,14 @@ float readTemp(void)
         Serial.println("Failed to read from DHT");
         exit;
     }
-    Serial.print("Temperature: ");
-    Serial.println(temperature);
+    sprintf(buffer, "%.2f°C", temperature);
+    SerialMon.print("Temperature: ");
+    SerialMon.println(buffer);
+    pre();
+    u8x8.setFont(u8x8_font_amstrad_cpc_extended_f); 
+    u8x8.drawString(0, 2, "Temperature");
+    u8x8.draw2x2String(0, 5, buffer);
+
     return temperature;
 }
 
