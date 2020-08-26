@@ -95,6 +95,8 @@ void pre(void);
 
 void setup()
 {
+    u8x8.begin();
+    u8x8.setPowerSave(0);
     SerialMon.begin(115200);
     delay(delay_time);
     SerialAT.begin(115200);
