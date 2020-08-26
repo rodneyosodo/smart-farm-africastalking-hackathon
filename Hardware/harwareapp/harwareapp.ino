@@ -6,6 +6,8 @@
 #include <IPStack.h>
 #include <MQTTClient.h>
 #include <MQTTPacket.h>
+#include <Arduino.h>
+#include <U8x8lib.h>
 
 #define DHTTYPE DHT11
 // Set serial for debug console (to the Serial Monitor, default speed 115200)
