@@ -424,3 +424,15 @@ void incomingMessageHandler(MQTT::MessageData &messageData)
         SerialMon.println(buffer);
     }
 }
+
+void pre(void)
+{
+    u8x8.setFont(u8x8_font_amstrad_cpc_extended_f);    
+    u8x8.clear();
+
+    u8x8.inverse();
+    u8x8.print(" SMART FARM    ");
+    u8x8.setFont(u8x8_font_chroma48medium8_r);  
+    u8x8.noInverse();
+    u8x8.setCursor(0,1);
+}
