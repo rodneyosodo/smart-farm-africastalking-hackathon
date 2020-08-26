@@ -127,8 +127,11 @@ void loop()
 
     delay(delay_time);
     sendTemperature();
+    delay(delay_time);
     sendHumidity();
+    delay(delay_time);
     sendSoilMoisture();
+    delay(delay_time);
     sendLightIntensity();
     delay(loop_time);
     // Wait for a few seconds to loop again
