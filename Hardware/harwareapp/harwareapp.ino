@@ -68,6 +68,7 @@ char brokerAddress[] = "broker.africastalking.com";
 int brokerPort = 1883;
 
 float humidity, temperature, soilMoistureValue, ldrValue;
+int r;
 
 DHT dht(DHT_PIN, DHTTYPE);
 TinyGsm modem(SerialAT);
