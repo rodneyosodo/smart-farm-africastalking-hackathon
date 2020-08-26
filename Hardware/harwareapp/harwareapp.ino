@@ -242,6 +242,12 @@ void connectGSM(void)
     }
     if (modem.isNetworkConnected()) {
         SerialMon.println("Network connected");
+        pre();
+        u8x8.setFont(u8x8_font_amstrad_cpc_extended_f);
+        u8x8.setCursor(0,4); 
+        u8x8.print("Network: ");
+        u8x8.setCursor(0,5); 
+        u8x8.print("connected");
     }
     SerialMon.println("GSM OK");
     SerialMon.println("Attempting to establish GPRS connection");
