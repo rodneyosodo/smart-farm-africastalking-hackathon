@@ -206,7 +206,7 @@ float readSoilMoisture(void)
 float readLightIntensity(void)
 {
     // Read light intensity
-    int ldrValue = analogRead(ldrPin);
+    ldrValue = analogRead(ldrPin);
     ldrValue = map(ldrValue, 0, 4095, 100, 0);
     // Map value : 0 will be 100 and 4095 will be 0
     sprintf(buffer, "%.2f", ldrValue);
