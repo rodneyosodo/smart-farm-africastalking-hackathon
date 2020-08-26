@@ -120,6 +120,12 @@ void setup()
 
 void loop()
 {
+    pre();
+    u8x8.print("AFRICASTALKING");
+    u8x8.setCursor(0,2);
+    u8x8.print("HACKATHON");
+
+    delay(delay_time);
     sendTemperature();
     sendHumidity();
     sendSoilMoisture();
