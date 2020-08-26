@@ -192,8 +192,14 @@ float readSoilMoisture(void)
     soilMoistureValue = analogRead(soilMoisturePin);
     soilMoistureValue = map(soilMoistureValue, 0, 4095, 0, 100);
     // Map value : 0 will be 0 and 4095 will be 1000
-    Serial.print("Soil moisture content: ");
-    Serial.println(soilMoistureValue);
+
+    sprintf(buffer, "%.2f", soilMoistureValue);
+    SerialMon.print("Soil moisture: ");
+    SerialMon.println(buffer);
+    pre();
+    u8x8.setFont(u8x8_font_amstrad_cpc_extended_f); 
+    u8x8.drawString(0, 2, "Soil moisture");
+    u8x8.draw2x2String(0, 5, buffer);
     return soilMoistureValue;
 }
 
