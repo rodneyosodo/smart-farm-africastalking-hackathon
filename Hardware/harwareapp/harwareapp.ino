@@ -9,6 +9,13 @@
 #include <Arduino.h>
 #include <U8x8lib.h>
 
+#ifdef U8X8_HAVE_HW_SPI
+#include <SPI.h>
+#endif
+#ifdef U8X8_HAVE_HW_I2C
+#include <Wire.h>
+#endif
+
 #define DHTTYPE DHT11
 // Set serial for debug console (to the Serial Monitor, default speed 115200)
 #define SerialMon Serial
