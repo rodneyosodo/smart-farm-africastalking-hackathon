@@ -34,7 +34,7 @@
 #define TINY_GSM_USE_GPRS true
 #define TINY_GSM_USE_WIFI false
 
-// set GSM PIN, if any
+// The GSM module power is at PB15 and needs to be set HIGH for 3 seconds then LOW once
 #define GSM_POWER_KEY PB15
 
 int loop_time = 5000;
