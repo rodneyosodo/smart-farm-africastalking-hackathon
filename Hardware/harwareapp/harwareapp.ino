@@ -415,6 +415,7 @@ void sendTemperature(void)
 
 void sendLightIntensity(void)
 {
+    // Sends light intensity data to the broker
     ldrValue = readLightIntensity();
     snprintf(buffer, sizeof(buffer), "%.3f", ldrValue);
     publishMessage(buffer, lightIntensityTopic);
