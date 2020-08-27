@@ -7,8 +7,8 @@
 #include <TinyGsmClient.h> // GSM library
 #include <Countdown.h>
 #include <IPStack.h>
-#include <MQTTClient.h>
-#include <MQTTPacket.h>
+#include <MQTTClient.h> // MQTT client library 
+#include <MQTTPacket.h> // MQTT library to send data as packets
 #include <Arduino.h>
 #include <U8x8lib.h>
 
