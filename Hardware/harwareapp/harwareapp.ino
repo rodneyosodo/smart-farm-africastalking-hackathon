@@ -245,6 +245,7 @@ float readLightIntensity(void)
 
 void connectGSM(void)
 {
+    // This function connects to GSM
     SerialMon.println("Getting the modem ready");
     modem.init();
     String name = modem.getModemName();
