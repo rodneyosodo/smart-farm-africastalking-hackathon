@@ -47,7 +47,8 @@ const int DHT_PIN = PA6;
 const int soilMoisturePin = PB1;
 // where the Light Dependent Resistor data pin is located
 const int ldrPin = PB0;
-#define relayPin PC13
+// where the Solid state relay data pin is located
+#define relayPin PA7
 
 // Your GPRS credentials, if any
 const char apn[] = "iot.safaricom.com";
