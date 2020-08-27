@@ -430,6 +430,7 @@ void sendSoilMoisture(void)
 
 void incomingMessageHandler(MQTT::MessageData &messageData)
 {
+    // Handler for incomming messages
     MQTT::Message &message = messageData.message;
     MQTTString topic = messageData.topicName;
     snprintf(buffer, sizeof(buffer), "%s", messageData.topicName);
