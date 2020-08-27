@@ -211,7 +211,7 @@ float readTemp(void)
 
 float readSoilMoisture(void)
 {
-    // Read soil moisture
+    // This functions reads the soil moisture as returns the value as float
     soilMoistureValue = analogRead(soilMoisturePin);
     soilMoistureValue = map(soilMoistureValue, 0, 4095, 0, 100);
     // Map value : 0 will be 0 and 4095 will be 1000
