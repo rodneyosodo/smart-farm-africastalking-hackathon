@@ -1,8 +1,10 @@
 // defining the  GSM module before importations
 #define TINY_GSM_MODEM_SIM800
 
-#include <DHT.h>
-#include <TinyGsmClient.h>
+// IMPORTATION OF NECESSARY HEADER FILES
+
+#include <DHT.h> // DHT library
+#include <TinyGsmClient.h> // GSM library
 #include <Countdown.h>
 #include <IPStack.h>
 #include <MQTTClient.h>
