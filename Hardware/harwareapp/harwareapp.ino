@@ -171,6 +171,7 @@ void loop()
 
 float readHum(void)
 {
+    // This functions reads the humidity as returns the value as float
     humidity = dht.readHumidity();
     // Check if reads failed and exit
     if (humidity == NULL){
