@@ -155,6 +155,7 @@ void loop()
     delay(delay_time);
     sendLightIntensity();
 
+    // Fill the display for refreshing
     pre();
     u8x8.fillDisplay();
     for( r = 0; r < u8x8.getRows(); r++ )
