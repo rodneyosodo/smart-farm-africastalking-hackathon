@@ -54,6 +54,7 @@ const int ldrPin = PB0;
 const char apn[] = "iot.safaricom.com";
 const char gprsUser[] = "";
 const char gprsPass[] = "";
+// Buffer to stop messages when formating before publishing or printing
 char buffer[100];
 int returnCode = 0;
 // BEGIN MQTT CONFIG
