@@ -83,6 +83,7 @@ char brokerAddress[] = "broker.africastalking.com";
 int brokerPort = 1883;
 
 float humidity, temperature, soilMoistureValue, ldrValue;
+// iterator variable
 int r;
 
 DHT dht(DHT_PIN, DHTTYPE);
