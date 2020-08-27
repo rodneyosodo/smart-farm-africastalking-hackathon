@@ -258,6 +258,7 @@ void connectGSM(void)
     if (!modem.waitForNetwork())
     {
         SerialMon.println("Unable to initialize registration. Reset and try again.");
+        // Restart takes quite some time To skip it, call init() instead of restart()
         modem.restart();
         while (true)
         {
@@ -274,6 +275,7 @@ void connectGSM(void)
         u8x8.print("connected");
     }
     SerialMon.println("GSM OK");
+    // GPRS connection parameters are usually set after network registration
     SerialMon.println("Attempting to establish GPRS connection");
     if (!modem.gprsConnect(apn, gprsUser, gprsPass))
     {
