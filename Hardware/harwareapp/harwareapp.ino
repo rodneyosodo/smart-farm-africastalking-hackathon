@@ -407,6 +407,7 @@ void sendHumidity(void)
 
 void sendTemperature(void)
 {
+    // Sends temperature data to the broker
     temperature = readTemp();
     snprintf(buffer, sizeof(buffer), "%.3f", temperature);
     publishMessage(buffer, temperatureTopic);
