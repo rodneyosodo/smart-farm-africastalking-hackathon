@@ -21,6 +21,8 @@
 #include <Wire.h>
 #endif
 
+// DEFINITION OF VARIABLES
+
 #define DHTTYPE DHT11
 // Set serial for debug console (to the Serial Monitor, default speed 115200)
 #define SerialMon Serial
