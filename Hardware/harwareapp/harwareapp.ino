@@ -387,6 +387,7 @@ void connectMqtt(void)
 
 void publishMessage(char *payload, const char *topic)
 {
+    // Publishes messages to the broker
     MQTT::Message message;
     message.qos = MQTT::QOS1;
     message.payload = (void *)payload;
