@@ -170,3 +170,6 @@ dmypy.json
 
 # Migrations
 migrations/
+
+# configs
+config.h
