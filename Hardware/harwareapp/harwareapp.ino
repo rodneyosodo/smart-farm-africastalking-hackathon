@@ -112,19 +112,23 @@ void pre(void);
 
 void setup()
 {
+    // Start the OLED display
     u8x8.begin();
+    // Start serial monitors
     u8x8.setPowerSave(0);
+    // Start serial monitors
     SerialMon.begin(115200);
     delay(delay_time);
     SerialAT.begin(115200);
     delay(delay_time);
+    // Declare the sensor pins as input pins
     pinMode(soilMoisturePin, INPUT);
     pinMode(ldrPin, INPUT);
-
+    // Declare the actuator pins as output pins
     pinMode(GSM_POWER_KEY, OUTPUT);
     pinMode(relayPin, OUTPUT);
 
-        // GSM ON
+    // GSM ON
     digitalWrite(GSM_POWER_KEY, 1);
     delay(delay_time);
     digitalWrite(GSM_POWER_KEY, 0);
