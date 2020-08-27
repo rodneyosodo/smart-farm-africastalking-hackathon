@@ -469,3 +469,15 @@ void pre(void)
     u8x8.noInverse();
     u8x8.setCursor(0,1);
 }
+
+void print_on_oled(char* topic, float data)
+{
+    // prints data on oled screen
+    sprintf(buffer, "%.2f", data);
+    SerialMon.print(topic);
+    SerialMon.println(buffer);
+    pre();
+    u8x8.setFont(u8x8_font_amstrad_cpc_extended_f); 
+    u8x8.drawString(0, 2, topic);
+    u8x8.draw2x2String(0, 5, buffer);
+}
