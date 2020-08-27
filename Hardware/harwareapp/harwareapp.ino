@@ -191,7 +191,7 @@ float readHum(void)
 
 float readTemp(void)
 {
-    // Read temperature in Celsius(default)
+    // This functions reads temperature in Celsius(default) the value as float
     temperature = dht.readTemperature();
         // Check if reads failed and exit
     if (temperature == NULL){
