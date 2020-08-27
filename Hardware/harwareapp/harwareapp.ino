@@ -45,6 +45,7 @@ int delay_time = 2000;
 const int DHT_PIN = PA6;
 // where the Soil Moisture sensor data pin is located
 const int soilMoisturePin = PB1;
+// where the Light Dependent Resistor data pin is located
 const int ldrPin = PB0;
 #define relayPin PC13
 
