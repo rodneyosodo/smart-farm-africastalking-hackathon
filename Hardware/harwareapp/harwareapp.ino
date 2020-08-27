@@ -51,19 +51,18 @@ const int ldrPin = PB0;
 #define relayPin PA7
 
 // Your GPRS credentials, if any
-const char apn[] = "iot.safaricom.com";
+const char apn[] = SAF_APN;
 const char gprsUser[] = "";
 const char gprsPass[] = "";
 // Buffer to stop messages when formating before publishing or printing
 char buffer[100];
 // Default return code
 int returnCode = 0;
-// BEGIN MQTT CONFIG
 
-const char mqttUsername[] = "rodneyeris:demo2eris";
-const char mqttPassword[] = "qwertyuiop123";
-const char mqttDeviceID[] = "rodneylocalhost2";
-#define TOPIC_PREFIX "rodneyeris/demo2eris/"
+// BEGIN MQTT CONFIG
+const char mqttUsername[] = MQTT_CREDENTIALS;
+const char mqttPassword[] = DEVICE_GROUP_PASSWORD;
+const char mqttDeviceID[] = DEVICE_ID;
 
 // birth topic - This is a topic that the device publishes to when it makes the first MQTT Connection
 //  will topic - This is a topic that the device should publish to when  it disconnects.
@@ -79,9 +78,10 @@ const char *lightIntensityTopic = TOPIC_PREFIX "light";
 const char birthMessage[] = "CONNECTED";
 const char willMessage[] = "DISCONNECTED";
 
-char brokerAddress[] = "broker.africastalking.com";
-int brokerPort = 1883;
-
+char brokerAddress[] = BROKER_ADDRESS;
+int brokerPort = BROKER_PORT;
+// END MQTT CONFIG
+// Variables to store sensor values before publishing to the broker
 float humidity, temperature, soilMoistureValue, ldrValue;
 // iterator variable
 int r;
@@ -109,12 +109,12 @@ void sendSoilMoisture(void);
 void sendLightIntensity(void);
 void incomingMessageHandler(MQTT::MessageData &messageData);
 void pre(void);
+void print_on_oled(char* topic, float data);
 
 void setup()
 {
     // Start the OLED display
     u8x8.begin();
-    // Start serial monitors
     u8x8.setPowerSave(0);
     // Start serial monitors
     SerialMon.begin(115200);
