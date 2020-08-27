@@ -95,6 +95,7 @@ MQTT::Client<IPStack, Countdown, 128, 2> mqttClient = MQTT::Client<IPStack, Coun
 // Please update the pin numbers according to your setup. Use U8X8_PIN_NONE if the reset pin is not connected
 U8X8_SSD1306_128X64_NONAME_SW_I2C u8x8(/* clock=*/ PB8, /* data=*/ PB9, /* reset=*/ U8X8_PIN_NONE);   // OLEDs without Reset of the Display
 
+// DECLARATION OF FUNCTIONS
 float readTemp(void);
 float readHum(void);
 float readSoilMoisture(void);
