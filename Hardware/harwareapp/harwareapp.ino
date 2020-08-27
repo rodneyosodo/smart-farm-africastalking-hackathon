@@ -422,6 +422,7 @@ void sendLightIntensity(void)
 }
 void sendSoilMoisture(void)
 {
+    // Sends soil moisture data to the broker
     soilMoistureValue = readSoilMoisture();
     snprintf(buffer, sizeof(buffer), "%.3f", soilMoistureValue);
     publishMessage(buffer, soilMoistureTopic);
