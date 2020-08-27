@@ -37,7 +37,9 @@
 // The GSM module power is at PB15 and needs to be set HIGH for 3 seconds then LOW once
 #define GSM_POWER_KEY PB15
 
+// time before another iteration of the loop
 int loop_time = 5000;
+// short delay time
 int delay_time = 2000;
 const int DHT_PIN = PA6;
 const int soilMoisturePin = PB1;
