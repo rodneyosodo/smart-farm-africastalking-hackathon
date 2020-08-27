@@ -202,14 +202,7 @@ float readSoilMoisture(void)
     soilMoistureValue = analogRead(soilMoisturePin);
     soilMoistureValue = map(soilMoistureValue, 0, 4095, 0, 100);
     // Map value : 0 will be 0 and 4095 will be 1000
-
-    sprintf(buffer, "%.2f", soilMoistureValue);
-    SerialMon.print("Soil moisture: ");
-    SerialMon.println(buffer);
-    pre();
-    u8x8.setFont(u8x8_font_amstrad_cpc_extended_f); 
-    u8x8.drawString(0, 2, "Soil moisture");
-    u8x8.draw2x2String(0, 5, buffer);
+    print_on_oled("Soil moisture: ", soilMoistureValue);
     return soilMoistureValue;
 }
 
@@ -219,14 +212,7 @@ float readLightIntensity(void)
     ldrValue = analogRead(ldrPin);
     ldrValue = map(ldrValue, 0, 4095, 100, 0);
     // Map value : 0 will be 100 and 4095 will be 0
-    sprintf(buffer, "%.2f", ldrValue);
-    SerialMon.print("Light intensity: ");
-    SerialMon.println(buffer);
-    pre();
-    u8x8.setFont(u8x8_font_amstrad_cpc_extended_f); 
-    u8x8.drawString(0, 2, "Light intensity");
-    u8x8.draw2x2String(0, 5, buffer);
-
+    print_on_oled("Light intensity: ", ldrValue);
     return ldrValue;
 }
 
