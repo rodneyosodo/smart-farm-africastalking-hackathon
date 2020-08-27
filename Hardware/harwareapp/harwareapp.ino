@@ -56,6 +56,7 @@ const char gprsUser[] = "";
 const char gprsPass[] = "";
 // Buffer to stop messages when formating before publishing or printing
 char buffer[100];
+// Default return code
 int returnCode = 0;
 // BEGIN MQTT CONFIG
 
