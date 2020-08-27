@@ -1,3 +1,4 @@
+// defining the  GSM module before importations
 #define TINY_GSM_MODEM_SIM800
 
 #include <DHT.h>
