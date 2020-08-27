@@ -43,6 +43,7 @@ int loop_time = 5000;
 int delay_time = 2000;
 // where the DHT data pin is located
 const int DHT_PIN = PA6;
+// where the Soil Moisture sensor data pin is located
 const int soilMoisturePin = PB1;
 const int ldrPin = PB0;
 #define relayPin PC13
