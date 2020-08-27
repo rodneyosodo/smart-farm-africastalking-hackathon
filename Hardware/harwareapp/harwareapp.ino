@@ -323,6 +323,7 @@ void connectGSM(void)
 
 void connectMqtt(void)
 {
+    // Connects to MQTT
     MQTT::Message mqttMessage;
     snprintf(buffer, sizeof(buffer), "Connecting to %s on port %u\n", brokerAddress, brokerPort);
     SerialMon.println(buffer);
