@@ -41,6 +41,7 @@
 int loop_time = 5000;
 // short delay time
 int delay_time = 2000;
+// where the DHT data pin is located
 const int DHT_PIN = PA6;
 const int soilMoisturePin = PB1;
 const int ldrPin = PB0;
