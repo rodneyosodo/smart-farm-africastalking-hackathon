@@ -399,6 +399,7 @@ void publishMessage(char *payload, const char *topic)
 
 void sendHumidity(void)
 {
+    // Sends humidity data to the broker
     humidity = readHum();
     snprintf(buffer, sizeof(buffer), "%.3f", humidity);
     publishMessage(buffer, humidityTopic);
