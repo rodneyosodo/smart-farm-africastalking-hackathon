@@ -99,29 +99,53 @@ make start-ngrok
 #### USSD (Sandbox) 
 
 1. In your Sandbox account, navigate to the USSD blade and click on "Create Channel"
+
+
  ![Sandbox main page](./img/g.jpeg) 
 2. In the channel creation form, add an USSD shortcode number, and in the callback URL field add the your app URL and append `ussd`. Example if your Heroku app url in 4 above is `https://mycoolapp.herokuapp.com/` then your USSD callback should be `https://mycoolapp.herokuapp.com/ussd`. 
+
+
 ![Creating a channel and adding callback URL](./img/f.jpeg) 
-3. Save and in the end you should have something like shown above ![list ofchannel and adding callback URL](./img/h.jpeg) 
+
+3. Save and in the end you should have something like shown above
+
+![list ofchannel and adding callback URL](./img/h.jpeg) 
 
 #### IoT (Live) 
 
 1. Inside your AT IoT account, Click on the `...` under the `Actions` tab for the  device group you'd like to configure the callback for and update the callback URL to `iot`. Example if your Heroku app url  above is `https://mycoolapp.herokuapp.com/` then your IoT callback should be `https://mycoolapp.herokuapp.com/iot`. 
+
+
 ![Update IoT Device Group Callback](./img/i.jpeg) 
 
 #### The Simulator (Sandbox) 
-1. Navigate to the [AT Sandbox Simulator page](https://simulator.africastalking.com:1517/). Enter a valid phone number.
-2. Click on the USSD option
-![Main Sandbox app](./img/b.jpeg)
-3. Dial your USSD code. If your short code above was 1000, enter `*384*1000#` and press the `Call` button for magic!
-![Dial USSD shortcode](./img/j.jpeg)
-4. [Demo](https://youtu.be/OunLw0YObY4) is ![Demo](img/k.jpeg)
-5. SMS Alerts ![Alets](./img/a.jpeg)
 
-6. Data in my database:
+1. Navigate to the [AT Sandbox Simulator page](https://simulator.africastalking.com:1517/). Enter a valid phone number.
+
+
+2. Click on the USSD option
+
+
+![Main Sandbox app](./img/b.jpeg)
+
+3. Dial your USSD code. If your short code above was 1000, enter `*384*1000#` and press the `Call` button for magic!
+
+
+![Dial USSD shortcode](./img/j.jpeg)
+
+4. [Demo](https://youtu.be/OunLw0YObY4) is ![Demo](img/k.jpeg)
+
+
+6. SMS Alerts ![Alets](./img/a.jpeg)
+
+7. Data in my database:
+
+
    1. ![1](img/c.png)
    2. ![2](img/d.jpeg)
    3. ![3](img/e.jpeg)
    
-#### Wiring
+## Wiring
+
+
 ![Wiring](./img/fritzing_bb.jpeg)
