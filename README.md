@@ -2,17 +2,18 @@
 Project, smart farm, to be demoed at africastalking hackathon for their eris V1 dev kit.
 
 
-
 # Introduction
-### Hardware 
+## Hardware 
 Basically this is prototype device for smart farming. The smart farm has DHT11 sensor which measures temperature and humidity, light dependent resistor whihc measures light intensity and soil moisture sensor which measures soil moisture content. We have and irrigation system  and fan system symbolized by a solid state relay. When the soil moisture is low the eris dev kit automatically starts the irrigation system to raise the soil moisture content. If the soil moisture raises until it reaches a certain level the irrigation system is closed. When the temperature is high the fan and irrigation system are turned on in order to reduce the temperature of the micro climate. If it drops to a certain level the two systems are stopped. When the humidity is low the irrigation system which is overhead the crops is started in order to raise the humidity to optimum levels. If it is high the irrigation system is stopped. For light intensity we are tracking the records to be able to make better decisions in the future maybe by data analysis.
 
 The micro controller generally measures all the paramters after every minute and sends it to the africa's talking IoT API. Meanwhile the date is also shown on an oled screen on the eris dev kit. For sending the data we are using MQTT protocol and we are sending it via the network of Safaricom. This is to meand that the eris dev kit has a Preconfigured sim card to send data to Africa's Talking API.
 
-### Backend App
+## Backend App
 This is the callback applications which listens to all the incoming and is also repsonsible for outgowing messages. This applications has USSD and SMS services for the farming. In the future I will implement a voice applications. The USSD app is responsible for displaying the data of the farm to the user. It has wide range of use cases spanning from getting data from any date to starting or stoping irrigation. The sms service sends a daily average at the end of the day and also sends alert on any extreme conditions.
 
 ## Usage
+
+[![Demo](./img/k.jpeg)](https://youtu.be/OunLw0YObY4)
 
 ### Build ther arduino file
 
@@ -51,33 +52,76 @@ This is the callback applications which listens to all the incoming and is also 
 ```
 3. Reset the board the build
 
+### Setup callback
+Have Make docker and ngrok installed
+
+1. Create a `broker.env` file with the following configs
+```python
+MQTT_HOST = "broker.africastalking.com"
+MQTT_PORT = 1883
+MQTT_USERNAME = "rodneydemo:athackathons"
+MQTT_PASSWORD = "$#Password$%^&*("
+CLIENT_ID = "rodneyclient"
+FARMER_NUMBER = "+2547XXXXXXXX"
+AT_PASSWORD = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+AT_USERNAME = "rodneyXXXXX"
+```
+2. Start postgres database as a docker container
+
+```shell
+make start-postgres
+```
+3. Install requirements
+
+```shell
+pip3 install -r requirements.txt
+```
+4. Export configs
+
+```shell
+make export-config
+```
+
+5. initialize flask app
+
+```shell
+make initialize-app
+```
+6. Run ngrok
+
+```shell
+make start-ngrok
+```
+7. Copy your callback url you will use it later
+
 ### Setup Africa's Talking Account 
 
 #### USSD (Sandbox) 
 
 1. In your Sandbox account, navigate to the USSD blade and click on "Create Channel"
- ![Sandbox main page](./docs/assets/atsandbox1.png) 
+ ![Sandbox main page](./img/g.jpeg) 
 2. In the channel creation form, add an USSD shortcode number, and in the callback URL field add the your app URL and append `ussd`. Example if your Heroku app url in 4 above is `https://mycoolapp.herokuapp.com/` then your USSD callback should be `https://mycoolapp.herokuapp.com/ussd`. 
-![Creating a channel and adding callback URL](./docs/assets/atsandbox2.png) 
-3. Save and in the end you should have something like shown on the screen grab below
-![USSD Short codes Sandbox View](./docs/assets/atsandbox3.png) 
+![Creating a channel and adding callback URL](./img/f.jpeg) 
+3. Save and in the end you should have something like shown above ![list ofchannel and adding callback URL](./img/h.jpeg) 
 
 #### IoT (Live) 
 
 1. Inside your AT IoT account, Click on the `...` under the `Actions` tab for the  device group you'd like to configure the callback for and update the callback URL to `iot`. Example if your Heroku app url  above is `https://mycoolapp.herokuapp.com/` then your IoT callback should be `https://mycoolapp.herokuapp.com/iot`. 
-![Update IoT Device Group Callback](./docs/assets/atiot.png) 
+![Update IoT Device Group Callback](./img/i.jpeg) 
 
 #### The Simulator (Sandbox) 
 1. Navigate to the [AT Sandbox Simulator page](https://simulator.africastalking.com:1517/). Enter a valid phone number.
 2. Click on the USSD option
-![Main Sandbox app](./docs/assets/sandboxapp1.png)
+![Main Sandbox app](./img/b.jpeg)
 3. Dial your USSD code. If your short code above was 1000, enter `*384*1000#` and press the `Call` button for magic!
-![Dial USSD shortcode](./docs/assets/sandboxapp2.png)
+![Dial USSD shortcode](./img/j.jpeg)
+4. [Demo](https://youtu.be/OunLw0YObY4) is ![Demo](img/k.jpeg)
+5. SMS Alerts ![Alets](./img/a.jpeg)
 
-
-#### TODO : Wiring
-
-- Build your application and upload.
-
-
-https://youtu.be/OunLw0YObY4
+6. Data in my database:
+   1. ![1](img/c.png)
+   2. ![2](img/d.jpeg)
+   3. ![3](img/e.jpeg)
+   
+#### Wiring
+![Wiring](./img/fritzing_bb.jpeg)
