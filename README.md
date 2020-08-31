@@ -133,7 +133,7 @@ make start-ngrok
 
 ![Dial USSD shortcode](./img/j.jpeg)
 
-4. [Demo](https://youtu.be/OunLw0YObY4) is ![Demo](img/k.jpeg)
+4. [Demo](https://youtu.be/OunLw0YObY4) is ![Demo](./img/k.jpeg)
 
 
 6. SMS Alerts ![Alets](./img/a.jpeg)
