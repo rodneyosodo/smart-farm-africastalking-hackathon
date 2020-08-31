@@ -59,8 +59,8 @@ Have Make docker and ngrok installed
 ```python
 MQTT_HOST = "broker.africastalking.com"
 MQTT_PORT = 1883
-MQTT_USERNAME = "rodneydemo:athackathons"
-MQTT_PASSWORD = "$#Password$%^&*("
+MQTT_USERNAME = "rodneydemo:athackathon"
+MQTT_PASSWORD = "$#numbayasiri$%^&*("
 CLIENT_ID = "rodneyclient"
 FARMER_NUMBER = "+2547XXXXXXXX"
 AT_PASSWORD = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
@@ -133,7 +133,7 @@ make start-ngrok
 
 ![Dial USSD shortcode](./img/j.jpeg)
 
-4. [Demo](https://youtu.be/OunLw0YObY4) is ![Demo](./img/k.jpeg)
+4. [Demo](https://youtu.be/OunLw0YObY4) is ![Demo](img/k.jpeg)
 
 
 6. SMS Alerts ![Alets](./img/a.jpeg)
