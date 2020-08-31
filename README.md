@@ -141,9 +141,9 @@ make start-ngrok
 7. Data in my database:
 
 
-   1. ![1](img/c.png)
-   2. ![2](img/d.jpeg)
-   3. ![3](img/e.jpeg)
+   1. ![1](./img/c.png)
+   2. ![2](./img/d.jpeg)
+   3. ![3](./img/e.jpeg)
    
 ## Wiring
 
