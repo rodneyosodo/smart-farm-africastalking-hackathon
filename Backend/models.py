@@ -68,14 +68,3 @@ class Moisture(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
-
-    
-# {'payload': '0\x00', 'topic': 'rodneyeris/demo2eris/distance'}
-# {'payload': '26.800\x00', 'topic': 'rodneyeris/demo2eris/temperature'}
-# {'payload': '71.000\x00', 'topic': 'rodneyeris/demo2eris/humidity'}
-# {'payload': '2411\x00', 'topic': 'rodneyeris/demo2eris/light'}
-# {'payload': '22.400\x00', 'topic': 'rodneyeris/demo2eris/temperature'}
-# {'payload': '60.000\x00', 'topic': 'rodneyeris/demo2eris/humidity'}
-# {'payload': '0.000\x00', 'topic': 'rodneyeris/demo2eris/moisture'}
-# {'payload': '"on"', 'topic': 'rodneyeris/demo2eris/relay'}
-# {'payload': 'on\n', 'topic': 'rodneyeris/demo2eris/relay'}
