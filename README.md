@@ -1,6 +1,6 @@
 # smart-farm-africastalking-hackathon
-This project, smart farm, was demoed at africastalking hackathon for their eris V1 dev kit.
 
+This project, smart farm, was demoed at africastalking hackathon for their eris V1 dev kit.
 
 # Introduction
 
@@ -13,19 +13,19 @@ The microcontroller generally measures all the parameters after every minute and
 For the hardware, we are using the eris dev kit v1 as our microcontroller.
 
 Things to config:
+
 1. DHT11 sensor
 2. Soil moisture sensor
 3. Light-dependent resistor
 4. Solid-state relay
 5. OLED screen
 
-
 ### Wiring
 
 For the wiring, we are connecting the dht11 sensor pin to a digital input, pin PA6, to be able to receive temperature and humidity data. The Soil moisture sensor pin is connected also to a digital input pin, pin PB1. The Light-dependent resistor power pin is connected also to a digital input pin, pin PB0. The solid-state relay is connected to a digital output pin, pin PA7. The OLED screen is connected via the Inter-Integrated Circuit, or I2C on pin PB8 and PB9 for SCL and SDA respectively.
 
-- SDA (Serial Data) – The line for the master and slave to send and receive data.
-- SCL (Serial Clock) – The line that carries the clock signal.
+* SDA (Serial Data) – The line for the master and slave to send and receive data.
+* SCL (Serial Clock) – The line that carries the clock signal.
 
 I2C is a serial communication protocol, so data is transferred bit by bit along a single wire (the SDA line). I2C is synchronous, so the output of bits is synchronized to the sampling of bits by a clock signal shared between the master and the slave. The clock signal is always controlled by the master.
 
@@ -37,7 +37,7 @@ We will look at some of the key points to take home. Other can be found at the G
 
 Before we start anything we need to define our apn to be able to connect to Safaricom before pushing data to the africastalking MQTT server.
 
-```cpp
+``` cpp
 // Your GPRS credentials, if any
 const char apn[] = "iot.safaricom.com";
 const char gprsUser[] = "";
@@ -50,7 +50,7 @@ int returnCode = 0;
 
 We also need to config our MQTT to be able to push data to it. We need an MQTT username, password. With africastalking we also need the device id to be able to identify your device and also the respective MQTT topics to which we will publish and subscribe to.
 
-```cpp
+``` cpp
 // BEGIN MQTT CONFIG
 const char mqttUsername[] = MQTT_CREDENTIALS;
 const char mqttPassword[] = DEVICE_GROUP_PASSWORD;
@@ -77,8 +77,7 @@ int brokerPort = BROKER_PORT;
 
 All the functions we will be using are defined here.
 
-
-```cpp
+``` cpp
 // DECLARATION OF FUNCTIONS
 float readTemp(void);
 float readHum(void);
@@ -98,7 +97,7 @@ void print_on_oled(char* topic, float data);
 
 An example of reading humidity data from the DHT11 sensor is outlined here. We use the DHT library to be able to get humidity data from it.
 
-```cpp
+``` cpp
 float readHum(void)
 {
     // This functions reads the humidity as returns the value as float
@@ -115,8 +114,7 @@ float readHum(void)
 
 We need to connect to the Safaricom GSM endpoint since our sim card is Safaricom based. After connecting to GSM we will be able to now use the sim card features e.g using the internet to push data to africastalking MQTT server.
 
-
-```cpp
+``` cpp
 void connectGSM(void)
 {
     // This function connects to GSM
@@ -199,7 +197,7 @@ void connectGSM(void)
 
 We also need to connect to our MQTT server to publish and subscribe to topics.
 
-```cpp
+``` cpp
 void connectMqtt(void)
 {
     // Connects to MQTT
@@ -267,7 +265,7 @@ void connectMqtt(void)
 
 Since we will be publishing messages to the topics our function takes in the data your want to publish and the topic you want to publish to it.
 
-```cpp
+``` cpp
 void publishMessage(char *payload, const char *topic)
 {
     // Publishes messages to the broker
@@ -284,8 +282,7 @@ void publishMessage(char *payload, const char *topic)
 
 To send data to our MQTT broker we use this function. This is an example of sending humidity data to our africastalking endpoint.
 
-
-```cpp
+``` cpp
 void sendHumidity(void)
 {
     // Sends humidity data to the broker
@@ -295,9 +292,9 @@ void sendHumidity(void)
 }
 ```
 
-To handle all our incoming data we use this function. It checks if the incoming message is saying `on` or `off`. This is to start and stop our relay since it is used as our irrigation system
+To handle all our incoming data we use this function. It checks if the incoming message is saying `on` or `off` . This is to start and stop our relay since it is used as our irrigation system
 
-```cpp
+``` cpp
 void incomingMessageHandler(MQTT::MessageData &messageData)
 {
     // Handler for incoming messages
@@ -332,7 +329,7 @@ void incomingMessageHandler(MQTT::MessageData &messageData)
 
 This function prints the topic and data to the OLED screen
 
-```cpp
+``` cpp
 void print_on_oled(char* topic, float data)
 {
     // prints data on oled screen
@@ -349,6 +346,7 @@ void print_on_oled(char* topic, float data)
 The Arduino sketch can be found at [here](https://github.com/0x6f736f646f/smart-farm-africastalking-hackathon/tree/master/Hardware/harwareapp)
 
 ## Backend App
+
 This is the callback applications that listen to all the incoming and is also responsible for outgoing messages. This application has USSD and SMS services for farming. In the future, I will implement a voice application. The USSD app is responsible for displaying the data of the farm to the user. It has a wide range of use cases spanning from getting data from any date to starting or stoping irrigation. The SMS service sends a daily average at the end of the day and also sends alert on any extreme conditions.
 
 ## Usage
@@ -361,17 +359,16 @@ Play the [youtube](https://youtu.be/OunLw0YObY4) video
 
 ### Third-Party Libraries
 
-| Library              | Function                            | Source                                                                                      |
-| -------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------- |
-| MQTT Client(Eclipse) | Handling MQTT Client Connection     | [Eclipse.org](https://www.eclipse.org/downloads/download.php?file=/paho/arduino_1.0.0.zip)  |
-| Tiny GSM             | Handling GSM Module connection      | [TinyGSM](https://github.com/vshymanskyy/TinyGSM)                                           |
-| DHT                  | High level wrapper for DHT sensors  | [Adafruit](https://github.com/adafruit/DHT-sensor-library)                                  |
-| U8x8lib              | High level wrapper for OLED display | [olikraus/u8g2](https://github.com/olikraus/u8g2)                                           |
-
-
+| Library              | Function                            | Source                                                                                     |
+| -------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------ |
+| MQTT Client(Eclipse) | Handling MQTT Client Connection     | [Eclipse.org](https://www.eclipse.org/downloads/download.php?file=/paho/arduino_1.0.0.zip) |
+| Tiny GSM             | Handling GSM Module connection      | [TinyGSM](https://github.com/vshymanskyy/TinyGSM)                                          |
+| DHT                  | High level wrapper for DHT sensors  | [Adafruit](https://github.com/adafruit/DHT-sensor-library)                                 |
+| U8x8lib              | High level wrapper for OLED display | [olikraus/u8g2](https://github.com/olikraus/u8g2)                                          |
 
 1. Go to `Hardware/hardwareapp` then create a `config.h` file. This will hold you config Variables
 2. Inside the `config.h` add
+
 ```c++
 // This is your application username that is associated with your IoT Appplication
 #define APPLICATION_USERNAME "rodneydemo" 
@@ -391,13 +388,17 @@ Play the [youtube](https://youtu.be/OunLw0YObY4) video
 #define BROKER_ADDRESS "broker.africastalking.com"
 // Africa's Talking broker port
 #define BROKER_PORT 1883
-```
+
+``` 
+
 3. Reset the board the build
 
 ### Setup callback
+
 Have to Make docker and ngrok installed
 
 1. Create a `broker.env` file with the following configs
+
 ```python
 MQTT_HOST = "broker.africastalking.com"
 MQTT_PORT = 1883
@@ -408,39 +409,45 @@ FARMER_NUMBER = "+2547XXXXXXXX"
 AT_PASSWORD = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 AT_USERNAME = "rodneyXXXXX"
 ```
+
 2. Start Postgres database as a docker container
 
-```shell
+``` shell
 make start-postgres
 ```
+
 This starts a docker Postgres server in your local machine at port `1001`
 
 3. Install requirements
 
-```shell
+``` shell
 pip3 install -r requirements.txt
 ```
+
 This installs also your backend app requirements need for this to run.
 
 4. Export configs
 
-```shell
+``` shell
 make export-config
 ```
+
 This exports your database URI and hardware app configs
 
 5. initialize flask app
 
-```shell
+``` shell
 make initialize-app
 ```
+
 This initializes your database, migrates it then upgrades it before running your server.
 
 6. Run ngrok
 
-```shell
+``` shell
 make start-ngrok
 ```
+
 This is to expose your backend callback app to the internet.
 
 7. Copy your callback url you will use it later
@@ -451,52 +458,64 @@ This is to expose your backend callback app to the internet.
 
 1. In your Sandbox account, navigate to the USSD blade and click on "Create Channel"
 
+ 
 
- ![Sandbox main page](./img/g.jpeg) 
+![Sandbox main page](./img/g.jpeg)
+
+ 
+
 2. In the channel creation form, add a USSD shortcode number, and in the callback URL field add your app URL and append `ussd`. For example, if your Heroku app url in 4 above is `https://mycoolapp.herokuapp.com/` then your USSD callback should be `https://mycoolapp.herokuapp.com/ussd`. 
 
+![Creating a channel and adding callback URL](./img/f.jpeg)
 
-![Creating a channel and adding callback URL](./img/f.jpeg) 
+ 
 
 3. Save and in the end, you should have something like shown above
 
-![list of the channel and adding callback URL](./img/h.jpeg) 
+![list of the channel and adding callback URL](./img/h.jpeg)
+
+ 
 
 #### IoT (Live) 
 
 1. Inside your AT IoT account, Click on the `...` under the `Actions` tab for the device group you'd like to configure the callback for and update the callback URL to `iot`. For example, if your Heroku app url above is `https://mycoolapp.herokuapp.com/` then your IoT callback should be `https://mycoolapp.herokuapp.com/iot`. 
 
+![Update IoT Device Group Callback](./img/i.jpeg)
 
-![Update IoT Device Group Callback](./img/i.jpeg) 
+ 
 
 #### The Simulator (Sandbox) 
 
 1. Navigate to the [AT Sandbox Simulator page](https://simulator.africastalking.com:1517/). Enter a valid phone number.
 
-
 2. Click on the USSD option
-
 
 ![Main Sandbox app](./img/b.jpeg)
 
 3. Dial your USSD code. If your shortcode above was 1000, enter `*384*1000#` and press the `Call` button for magic!
 
-
 ![Dial USSD shortcode](./img/j.jpeg)
 
-4. [Demo](https://youtu.be/OunLw0YObY4) is ![Demo](./img/k.jpeg)
+4. [Demo](https://youtu.be/OunLw0YObY4) is 
 
+![Demo](./img/k.jpeg)
 
-6. SMS Alerts ![Alets](./img/a.jpeg)
+6. SMS Alerts 
+
+![Alets](./img/a.jpeg)
 
 7. Data in my database:
 
+   1. 
 
-   1. ![1](./img/c.png)
+![1](./img/c.png)
 
+   2. 
 
-   2. ![2](./img/d.jpeg)
+![2](./img/d.jpeg)
 
+   3. 
 
-   3. ![3](./img/e.jpeg)
+![3](./img/e.jpeg)
+
    
