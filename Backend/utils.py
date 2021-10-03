@@ -6,6 +6,7 @@ import africastalking
 from datetime import datetime, date
 from models import Humidity, Light, Temperature, Moisture
 
+
 class Functions:
     def __init__(self):
         load_dotenv(dotenv_path="broker.env")
@@ -20,20 +21,43 @@ class Functions:
         africastalking.initialize(self.username, self.api_key)
         self.sms = africastalking.SMS
 
-
     def start_irrigation(self):
         # starts irrigation
-        single("rodneyeris/demo2eris/relay", payload='on', qos=1, retain=False,
-            hostname=self.broker_url, port=self.broker_port, client_id=self.client_id,
-            keepalive=60, will=None, auth={'username':self.broker_username, 'password':self.broker_password},
-            tls=None, protocol=mqtt.MQTTv311, transport="tcp")
+        single("rodneyeris/demo2eris/relay",
+               payload='on',
+               qos=1,
+               retain=False,
+               hostname=self.broker_url,
+               port=self.broker_port,
+               client_id=self.client_id,
+               keepalive=60,
+               will=None,
+               auth={
+                   'username': self.broker_username,
+                   'password': self.broker_password
+               },
+               tls=None,
+               protocol=mqtt.MQTTv311,
+               transport="tcp")
 
     def stop_irrigation(self):
         # Stops irrigation
-        single("rodneyeris/demo2eris/relay", payload='off', qos=1, retain=False,
-            hostname=self.broker_url, port=self.broker_port, client_id=self.client_id,
-            keepalive=60, will=None, auth={'username':self.broker_username, 'password':self.broker_password},
-            tls=None, protocol=mqtt.MQTTv311, transport="tcp")
+        single("rodneyeris/demo2eris/relay",
+               payload='off',
+               qos=1,
+               retain=False,
+               hostname=self.broker_url,
+               port=self.broker_port,
+               client_id=self.client_id,
+               keepalive=60,
+               will=None,
+               auth={
+                   'username': self.broker_username,
+                   'password': self.broker_password
+               },
+               tls=None,
+               protocol=mqtt.MQTTv311,
+               transport="tcp")
 
     def send_alert(self, data, topic, level):
         # Sends and sms alert to farmers number
@@ -71,10 +95,10 @@ class Functions:
         if count == 0:
             count = 1
         average = {
-            "humidity" : humidity_av/count,
-            "temperature" : temperature_av/count,
-            "light" : light_av/count,
-            "moisture" : moisture_av/count
+            "humidity": humidity_av / count,
+            "temperature": temperature_av / count,
+            "light": light_av / count,
+            "moisture": moisture_av / count
         }
         return average
 
@@ -106,10 +130,10 @@ class Functions:
     def latest_data():
         # Gets the latest entries into the database
         data = {
-            "humidity" : Humidity.query.all()[-1].humidity,
-            "temperature" : Temperature.query.all()[-1].temperature,
-            "light" : Light.query.all()[-1].light,
-            "moisture" : Moisture.query.all()[-1].moisture
+            "humidity": Humidity.query.all()[-1].humidity,
+            "temperature": Temperature.query.all()[-1].temperature,
+            "light": Light.query.all()[-1].light,
+            "moisture": Moisture.query.all()[-1].moisture
         }
         return data
 
@@ -144,9 +168,9 @@ class Functions:
         if count == 0:
             count = 1
         average = {
-            "humidity" : humidity_av/count,
-            "temperature" : temperature_av/count,
-            "light" : light_av/count,
-            "moisture" : moisture_av/count
+            "humidity": humidity_av / count,
+            "temperature": temperature_av / count,
+            "light": light_av / count,
+            "moisture": moisture_av / count
         }
         return average
