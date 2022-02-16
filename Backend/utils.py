@@ -38,7 +38,7 @@ class Functions:
     def send_alert(self, data, topic, level):
         # Sends and sms alert to farmers number
         message = "Your {} level is {}".format(topic, level)
-        sms.send_sms(message, [self.number])
+        self.sms.send_sms(message, [self.number])
 
     @staticmethod
     def get_date_data(date_info):
